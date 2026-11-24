@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netflix - Home</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <h1 class="logo">NETFLIX</h1>
+
+        <div class="nav-buttons">
+            <a href="/movie/">Home</a>
+            <a href="/movie/watchlater">My Watch Later</a>
+            <a href="/movie/addmovie" class="btn">Add Movie</a>
+            <a href="/auth/logout" class="btn">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    {{#if featuredMovie}}
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="featured-label">FEATURED MOVIE</span>
+
+            <h1>{{featuredMovie.title}}</h1>
+
+            <p>
+                {{featuredMovie.description}}
+            </p>
+
+            <div class="hero-details">
+
+                <span>⭐ {{featuredMovie.rating}} / 10</span>
+
+                <span>{{featuredMovie.year}}</span>
+
+                <span>{{featuredMovie.language}}</span>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <a href="/movie/view/{{featuredMovie._id}}"
+                   class="btn">
+                    ▶ View Details
+                </a>
+
+                <a href="/movie/addmovie"
+                   class="secondary-btn">
+                    + Add Movie
+                </a>
+
+            </div>
+
+        </div>
+
+        {{#if featuredMovie.movieposter}}
+            <img
+                class="hero-poster"
+                src="{{featuredMovie.movieposter}}"
+                alt="{{featuredMovie.title}}">
+        {{/if}}
+
+    </section>
+
+    {{else}}
+
+    <section class="empty-hero">
+
+        <h1>Welcome to Netflix</h1>
+
+        <p>Your movie collection starts here.</p>
+
+        <a href="/movie/addmovie" class="btn">
+            Add Your First Movie
+        </a>
+
+    </section>
+
+    {{/if}}
+
+
+    <!-- RECENTLY ADDED MOVIES -->
+
+    <section class="container">
+
+        <h2>Recently Added</h2>
+
+        <div class="movie-grid">
+
+            {{#each recentMovies}}
+
+            <div class="movie-card">
+
+                <div class="movie-placeholder">
+
+                    {{#if this.movieposter}}
+
+                    <img src="{{this.movieposter}}"
+                         alt="{{this.title}}">
+
+                    {{else}}
+
+                    <div class="no-poster">
+                        NETFLIX
+                    </div>
+
+                    {{/if}}
+
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>{{this.title}}</h3>
+
+                    <p>{{this.year}} | {{this.language}}</p>
+
+                    <p>⭐ {{this.rating}} / 10</p>
+
+                    <a href="/movie/view/{{this._id}}"
+                       class="btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+            {{else}}
+
+            <p>No movies available.</p>
+
+            {{/each}}
+
+        </div>
+
+    </section>
+
+
+    <!-- TOP RATED MOVIES -->
+
+    <section class="container">
+
+        <h2>Top Rated Movies</h2>
+
+        <div class="movie-grid">
+
+            {{#each topRatedMovies}}
+
+            <div class="movie-card">
+
+                <div class="movie-placeholder">
+
+                    {{#if this.movieposter}}
+
+                    <img src="{{this.movieposter}}"
+                         alt="{{this.title}}">
+
+                    {{else}}
+
+                    <div class="no-poster">
+                        NETFLIX
+                    </div>
+
+                    {{/if}}
+
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>{{this.title}}</h3>
+
+                    <p>{{this.year}}</p>
+
+                    <p>⭐ {{this.rating}} / 10</p>
+
+                    <a href="/movie/view/{{this._id}}"
+                       class="btn">
+                        View Details
+                    </a>
+                    <form action="/movie/watchlater/{{this._id}}"
+      method="POST">
+
+    <button type="submit" class="watchlater-btn">
+        + Watch Later
+    </button>
+
+</form>
+
+                </div>
+
+            </div>
+
+            {{else}}
+
+            <p>No movies available.</p>
+
+            {{/each}}
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        <h2>NETFLIX</h2>
+
+        <p>My Personal Movie Collection</p>
+
+    </footer>
+
+</body>
+</html>

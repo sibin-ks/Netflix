@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Netflix Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+
+    <nav class="navbar">
+        <h1 class="logo">NETFLIX</h1>
+    </nav>
+
+    <div class="auth-container">
+
+        <h1>Sign In</h1>
+
+        <form action="/auth/login" method="POST">
+
+            <label>Email</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit">Sign In</button>
+
+        </form>
+
+        <p class="auth-link">
+            New to Netflix?
+            <a href="/auth/register">Sign up now</a>
+        </p>
+
+    </div>
+
+</body>
+</html>

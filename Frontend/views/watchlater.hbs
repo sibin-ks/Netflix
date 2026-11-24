@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Watch Later</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h1 class="logo">NETFLIX</h1>
+
+        <a href="/movie/">Home</a>
+        <a href="/movie/watchlater">Watch Later</a>
+    </nav>
+
+    <h2 class="section-title">My Watch Later</h2>
+
+    <div class="movie-container">
+
+        {{#each data}}
+
+        <div class="movie-card">
+
+            <img src="{{this.movieposter}}" alt="{{this.title}}">
+
+            <h3>{{this.title}}</h3>
+
+            <p>{{this.year}}</p>
+
+           <a href="/movie/view/{{this._id}}"
+                       class="btn">
+                        View Details
+                    </a>
+
+            <form action="/movie/watchlater/remove/{{this._id}}"
+                  method="POST">
+
+                <button type="submit">
+                    Remove
+                </button>
+
+            </form>
+
+        </div>
+
+        {{else}}
+
+        <p>No movies added to Watch Later.</p>
+
+        {{/each}}
+
+    </div>
+
+</body>
+</html>
